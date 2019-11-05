@@ -1,1 +1,12 @@
+.logo{
+    display: block;
+    margin: auto;
+    margin-bottom: 10px;
+    width: 50%;
+}
 
+@media(min-width: 768px){
+    .logo{
+        width: 50%;
+    }
+}

@@ -1,5 +1,8 @@
 {
   "name": "eri-johnson",
-  "integrations": {},
+  "integrations": {
+    "cordova": {},
+    "capacitor": {}
+  },
   "type": "angular"
 }
