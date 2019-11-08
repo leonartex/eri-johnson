@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { defineCustomElements } from '@ionic/pwa-elements/loader';
 defineCustomElements(window);
 import { Plugins, CameraResultType } from '@capacitor/core';
+import { EriJService } from 'src/app/services/eri-j.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 const { Camera } = Plugins;
 
@@ -19,7 +21,7 @@ export class TesteFotoPage implements OnInit {
     mediaType: this.camera.MediaType.PICTURE
   }*/
 
-  constructor() { }
+  constructor(private eri: EriJService, private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
     this.baterFoto();
@@ -29,10 +31,19 @@ export class TesteFotoPage implements OnInit {
     const image = await Camera.getPhoto({
       quality: 90,
       allowEditing: true,
-      resultType: CameraResultType.DataUrl
+      resultType: CameraResultType.Uri
     });
 
-    this.imagem = image.dataUrl;
+    this.imagem = this.sanitizer.bypassSecurityTrustResourceUrl(image.webPath);
+    console.log(this.imagem);
+    this.eri.verificaEri(this.imagem).subscribe(
+      resp => {
+        console.log(resp);
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 
 }
