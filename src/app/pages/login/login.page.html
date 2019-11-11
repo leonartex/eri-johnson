@@ -11,14 +11,14 @@
     <form>
       <ion-item>
         <ion-label position="floating">Email</ion-label>
-        <ion-input type="email"></ion-input>
+        <ion-input type="email" [(ngModel)]="usuario.email" name="email"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Senha</ion-label>
-        <ion-input type="password"></ion-input>
+        <ion-input type="password" [(ngModel)]="usuario.senha" [(ngModel)]="usuario.confirmaSenha" name="senha"></ion-input>
       </ion-item>
       <div class="align-center">
-        <ion-button>Entrar</ion-button>
+        <ion-button (click)="login()"  [disabled]="!usuario.valid">Entrar</ion-button>
       </div>
     </form>
     <a href="/cadastro">Não possui conta? Cadastre-se</a>

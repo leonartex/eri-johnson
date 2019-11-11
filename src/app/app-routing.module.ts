@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { SessionGuard } from '../app/guards/session.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -9,6 +10,11 @@ const routes: Routes = [
   { path: 'questionario', loadChildren: './pages/questionario/questionario.module#QuestionarioPageModule' },
   { path: 'cadastro', loadChildren: './pages/cadastro/cadastro.module#CadastroPageModule' },
   { path: 'resultado', loadChildren: './pages/resultado/resultado.module#ResultadoPageModule' },
+  {
+    path: 'administracao',
+    loadChildren: './pages/administracao/administracao.module#AdministracaoPageModule',
+    canActivate: [SessionGuard]
+  },
 ];
 
 @NgModule({

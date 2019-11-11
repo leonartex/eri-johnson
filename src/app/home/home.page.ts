@@ -10,6 +10,10 @@ export class HomePage {
 
   constructor( private router: Router) {}
 
+  entrar() {
+    this.router.navigate(['/login']);
+  }
+
   testeFoto() {
     this.router.navigate(['/teste-foto']);
   }

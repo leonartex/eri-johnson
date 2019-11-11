@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from 'src/app/services/login.service';
+import { Usuario } from 'src/app/models/Usuario';
 
 @Component({
   selector: 'app-cadastro',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CadastroPage implements OnInit {
 
-  constructor() { }
+  usuario = new Usuario();
+
+  constructor(private login: LoginService) { }
 
   ngOnInit() {
+  }
+
+  cadastrar() {
+    this.login.cadastrar(this.usuario);
   }
 
 }
