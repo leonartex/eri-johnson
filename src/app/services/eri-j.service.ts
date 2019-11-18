@@ -13,7 +13,7 @@ export class EriJService {
     const formData = new FormData();
     formData.append('foto', img);
 
-    const url = `http://localhost:3000/eri/`;
+    const url = `https://eri-johnson-api.herokuapp.com/eri/`;
     return this.http.post(url, formData);
   }
 }

@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>anotacoes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form>
+    <ion-item>
+      <ion-textarea [(ngModel)]="anotacaoAtual.conteudo" name="texto"></ion-textarea>
+    </ion-item>
+    <ion-button (click)="gravar()">Enviar</ion-button>
+  </form>
+
+  <ion-list>
+    <ion-item *ngFor="let item of anotacoes | async">
+      {{item.conteudo}}
+      <button (click)="editar(item)">Editar</button>
+      <button (click)="deletar(item.uid)">Excluir</button>
+    </ion-item>
+  </ion-list>
+</ion-content>

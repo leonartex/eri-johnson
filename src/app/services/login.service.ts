@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -42,6 +43,7 @@ export class LoginService {
     this.afa.auth.signInWithEmailAndPassword(u.email, u.senha).then(
       user => {
         if (user.user.emailVerified) {
+          localStorage.usuario = user.user.uid;
           this.route.navigate(['administracao']);
         } else {
           this.logout();
@@ -55,6 +57,7 @@ export class LoginService {
 
   public logout() {
     this.afa.auth.signOut();
+    localStorage.clear();
     this.route.navigate(['login']);
   }
 
@@ -66,5 +69,9 @@ export class LoginService {
         return usuario !== null;
       })
     );
+  }
+
+  public recuperarSenha(email: string) {
+    this.afa.auth.sendPasswordResetEmail(email, {url: environment.urlBase + '/login'});
   }
 }

@@ -15,6 +15,8 @@ const routes: Routes = [
     loadChildren: './pages/administracao/administracao.module#AdministracaoPageModule',
     canActivate: [SessionGuard]
   },
+  { path: 'recuperar-senha', loadChildren: './pages/recuperar-senha/recuperar-senha.module#RecuperarSenhaPageModule' },
+  { path: 'anotacoes', loadChildren: './pages/anotacoes/anotacoes.module#AnotacoesPageModule' },
 ];
 
 @NgModule({

@@ -6,32 +6,26 @@
 
 <ion-content>
   <img class="pergunta" src="../../../assets/shapes.svg">
-  <div class="ion-padding pergunta">
-    <div>
-      <p>
-        <strong>Questão 1)</strong> Qual a primeira palavra que Eri Johnson disse quando bebê?
-      </p>
-    </div>
-    <ion-list>
-        <ion-radio-group>      
-          <ion-item>
-            <ion-label>Biff</ion-label>
-            <ion-radio slot="start" value="biff" checked></ion-radio>
-          </ion-item>      
-          <ion-item>
-            <ion-label>Griff</ion-label>
-            <ion-radio slot="start" value="griff"></ion-radio>
-          </ion-item>      
-          <ion-item>
-            <ion-label>Buford</ion-label>
-            <ion-radio slot="start" value="buford"></ion-radio>
+  <div *ngIf="questoes.indexOf(questaoAtual) != -1; then thenBlock; else elseBlock"></div>
+  <ng-template #thenBlock>
+    <div class="ion-padding pergunta">
+      <div>
+        <p>
+          <strong>Questão {{contador}}: </strong> {{questaoAtual.questao}}
+        </p>
+      </div>
+      <ion-list>
+        <ion-radio-group #alternativaEscolhida>
+          <ion-item *ngFor="let alternativa of questaoAtual.alternativas">
+            <ion-label>{{alternativa}}</ion-label>
+            <ion-radio slot="start" [value]="questaoAtual.alternativas.indexOf(alternativa)"></ion-radio>
           </ion-item>
-          <ion-item>
-              <ion-label>Carlos</ion-label>
-              <ion-radio slot="start" value="carlos"></ion-radio>
-            </ion-item>
         </ion-radio-group>
       </ion-list>
-      <ion-button expand="block">Responder</ion-button>
-  </div>
+    </div>
+    <ion-button expand="full" size="large" (click)="responder(alternativaEscolhida.value)">Responder</ion-button>
+  </ng-template>
+  <ng-template #elseBlock>
+    <ion-button expand="full" size="large" (click)="resultado()">Visualizar resultado</ion-button>
+  </ng-template>
 </ion-content>
