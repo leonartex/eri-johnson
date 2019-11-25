@@ -11,13 +11,14 @@ import { LoginService } from 'src/app/services/login.service';
 export class EriJohnsonPage implements OnInit {
   anotacoes;
   isLogado = false;
-  constructor(private anota: AnotacaoService, private router: Router, private login: LoginService) { }
-
-  ngOnInit() {
-    this.anotacoes = this.anota.listar();
+  constructor(private anota: AnotacaoService, private router: Router, private login: LoginService) {
     this.login.isLogado().subscribe(
       res => this.isLogado = res
     );
+  }
+
+  ngOnInit() {
+    this.anotacoes = this.anota.listar();
   }
 
   public anotar() {

@@ -1,10 +1,20 @@
 <ion-list>
-  <ion-item>Você é Eri Johnson?</ion-item>
-  <ion-item>Como é ser Eri Johnson?</ion-item>
-  <div *ngIf="logado; else elseBlock">
-    <ion-item>Sair?</ion-item>
+  <ion-item button (click)="toggleMenu()" [routerLink]="['home']" routerLinkActive="link-ativo">Você é Eri Johnson?
+  </ion-item>
+  <div class="lista">
+    <ion-item button (click)="toggleMenu()" [routerLink]="['exame-fotografico']" routerLinkActive="link-ativo">Exame
+      Visual?</ion-item>
+    <ion-item button (click)="toggleMenu()" [routerLink]="['questionario']" routerLinkActive="link-ativo">Questionário?
+    </ion-item>
+    <ion-item button (click)="toggleMenu()" [routerLink]="['resultado']" routerLinkActive="link-ativo">Resultados?
+    </ion-item>
   </div>
-  <ng-template #elseBlock>
-    <ion-item>Entrar?</ion-item>
-  </ng-template>
+  <ion-item button (click)="toggleMenu()" [routerLink]="['ser-eri']" routerLinkActive="link-ativo">Como é ser Eri
+    Johnson?</ion-item>
+  <div *ngIf="logado">
+    <ion-item button (click)="toggleMenu()" [routerLink]="['logout']">Sair?</ion-item>
+  </div>
+  <div *ngIf="naoLogado">
+    <ion-item button (click)="toggleMenu()" [routerLink]="['login']" routerLinkActive="link-ativo">Entrar?</ion-item>
+  </div>
 </ion-list>

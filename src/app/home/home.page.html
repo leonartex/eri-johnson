@@ -16,7 +16,7 @@
       <ion-button (click)="testeFoto()" size="large" expand="block">Você é Eri Johnson?</ion-button>
     </div>
     <p class="align-center" *ngIf="resultado">Seu último teste deu {{resultado | percent}} de semelhança com Eri Johnson.</p>
-    <div class="align-center">
+    <div class="align-center" *ngIf="!logado">
       <ion-button (click)="entrar()">Entrar</ion-button>
     </div>
   </div>

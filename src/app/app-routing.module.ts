@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { SessionGuard } from '../app/guards/session.guard';
-import { SessionInversoGuard } from './guards/session-inverso.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -15,8 +13,7 @@ const routes: Routes = [
   { path: 'resultado', loadChildren: './pages/resultado/resultado.module#ResultadoPageModule' },
   {
     path: 'cadastro',
-    loadChildren: './pages/cadastro/cadastro.module#CadastroPageModule',
-    canActivate: [SessionInversoGuard]
+    loadChildren: './pages/cadastro/cadastro.module#CadastroPageModule'
   },
   { path: 'recuperar-senha', loadChildren: './pages/recuperar-senha/recuperar-senha.module#RecuperarSenhaPageModule' },
   {

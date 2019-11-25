@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'src/app/services/login.service';
-import { tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-menu-lateral',
@@ -9,12 +10,20 @@ import { tap } from 'rxjs/operators';
 })
 export class MenuLateralComponent implements OnInit {
   logado = false;
-  constructor(private login: LoginService) { }
-
-  ngOnInit() {
+  naoLogado = false;
+  constructor(private login: LoginService, private router: Router, private menu: MenuController) {
     this.login.isLogado().subscribe(
-      res => this.logado = res
+      res => {
+        this.logado = res;
+        this.naoLogado = !res;
+      }
     );
+  }
+
+  ngOnInit() { }
+
+  toggleMenu() {
+    this.menu.toggle();
   }
 
 }

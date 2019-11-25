@@ -23,8 +23,9 @@
       <div class="align-center">
         <ion-button (click)="login()" expand="block" [disabled]="!usuario.valid">Entrar</ion-button>
       </div>
+      <p>Esqueceu sua senha? <a [routerLink]="['/recuperar-senha']"><strong>Recuperar senha</strong></a></p>
     </form>
     <br />
-    <p>Não possui conta? <a href="/cadastro"><strong>Cadastre-se</strong></a></p>
+    <p>Não possui conta? <a [routerLink]="['/cadastro']"><strong>Cadastre-se</strong></a></p>
   </div>
 </ion-content>
