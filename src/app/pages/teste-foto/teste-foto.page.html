@@ -1,16 +1,22 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>teste-foto</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Exame Visual</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div class="ion-padding">
+  <div class="ion-padding" *ngIf="isResultadoPronto">
     <img *ngIf="imagem" [src]="imagem">
-    <p class="align-center">73% de semelhança com Eri Johnson</p>
+    <p class="align-center">{{resultado[0].score | percent}} de semelhança com Eri Johnson</p>
+    <p class="align-center" *ngIf="resultado[0].score < 0.5">É, não é muito parecido, uma pena.</p>
+    <p class="align-center" *ngIf="resultado[1].score > resultado[0].score">Não sei se te consola, mas você tem
+      {{resultado[1].score | percent}} de semelhança com Faustão.</p>
     <p class="align-center">Será que tens o suficiente para comprovar ser Eri Johnson?</p>
     <div class="align-center">
-      <ion-button>Responder questionário</ion-button>
+      <ion-button expand="full" (click)="responder()">Responder questionário</ion-button>
     </div>
   </div>
 </ion-content>

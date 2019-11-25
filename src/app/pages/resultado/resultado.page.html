@@ -1,14 +1,74 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>resultado</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Resultado Final</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <img class="resultado" src="../../../assets/logo.png">
-  <p class="align-center">Parabéns, você realmente é Eri Johnson!</p>
-  <p class="align-center">Peço desculpas por ter duvidado de você, senhor Oliveira!</p>
-  <div class="align-center">
-    <ion-button>Começar novamente?</ion-button>
+  <div class="ion-padding">
+    <div *ngIf="resultadoFausto >= 0.5 && resultadoEri < resultadoFausto">
+      <img class="resultado" src="../../../assets/logo.png">
+      <p class="align-center">Senhor Fausto Silva, o que o senhor faz aqui?</p>
+      <p class="align-center">Eu não esperava encontrar o senhor nesse site.</p>
+    </div>
+    <div *ngIf="media < 0.5 && resultadoEri > resultadoFausto">
+      <img class="resultado" src="../../../assets/logo.png">
+      <p class="align-center">Perdão, mas você não é Eri Johnson.</p>
+      <p class="align-center">Por favor, saia, reflita e procure evoluir para um dia, quem sabe, pensar em se parecer
+        com
+        Eri Johnson.</p>
+    </div>
+    <div *ngIf="media < 0.75 && media >= 0.5 && resultadoEri > resultadoFausto">
+      <img class="resultado" src="../../../assets/logo.png">
+      <p class="align-center">Ok, devo dizer que você me lembra um pouco ele, mas isso não é o suficiente.</p>
+      <p class="align-center">Tente melhorar.</p>
+    </div>
+    <div *ngIf="media >= 0.75 && media < 0.9 && resultadoEri > resultadoFausto">
+      <img class="resultado" src="../../../assets/logo.png">
+      <p class="align-center">Parabéns, você realmente deve ser Eri Johnson!</p>
+      <p class="align-center">Mas você ainda tem mais potencial, continue tentando.</p>
+    </div>
+    <div *ngIf="media >= 0.9 && resultadoEri > resultadoFausto">
+      <img class="resultado" src="../../../assets/logo.png">
+      <p class="align-center">Não há dúvidas de que você seja Eri Johnson!</p>
+      <p class="align-center">Peço desculpas por ter te duvidado, senhor Oliveira.</p>
+    </div>
   </div>
+  <ion-card>
+    <ion-card-content>
+      <ion-list>
+        <ion-list-header>
+          <h2>Resultados</h2>
+        </ion-list-header>
+        <ion-item>
+          <ion-list>
+            Fotograficamente
+            <ion-item>
+              <ion-label>Eri Johnson</ion-label>
+              {{resultadoEri | percent}}
+            </ion-item>
+            <ion-item *ngIf="resultadoFausto > 0.25">
+              <ion-label>Faustão</ion-label>
+              {{resultadoFausto | percent}}
+            </ion-item>
+          </ion-list>
+
+        </ion-item>
+        <ion-item>
+          <ion-label>Questionário</ion-label>
+          {{resultadoQuestionario | percent}}
+        </ion-item>
+        <ion-item>
+          <ion-label><strong>Resultado Final</strong></ion-label>
+          {{media | percent}}
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
+<ion-footer>
+  <ion-button expand="full" (click)="recomeco()">Começar novamente?</ion-button>
+</ion-footer>

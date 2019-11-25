@@ -6,19 +6,21 @@ import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+import { AlertaService } from './alerta.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  constructor(private afa: AngularFireAuth, private fs: AngularFirestore, private route: Router) { }
+  constructor(private afa: AngularFireAuth, private fs: AngularFirestore, private route: Router, private al: AlertaService) { }
 
   get usuarioLogado(): firebase.User {
     return this.afa.auth.currentUser;
   }
 
-  public cadastrar(u: Usuario) {
+  public async cadastrar(u: Usuario) {
+    const loading = await this.al.loading();
     this.afa.auth.createUserWithEmailAndPassword(u.email, u.senha).then(
       credenciais => {
         this.fs.doc('/users/' + credenciais.user.uid).set({
@@ -28,28 +30,37 @@ export class LoginService {
             this.afa.auth.currentUser.sendEmailVerification({
               url: environment.urlBase
             });
+            loading.dismiss();
           });
       },
-      erro => {
-        if (erro.code === 'auth/invalid-email') {
+      error => {
+        loading.dismiss();
+        this.al.toast({message: error});
+        if (error.code === 'auth/invalid-email') {
           console.log('Email inválido');
         }
-        console.log(erro);
+        console.log(error);
       }
     );
   }
 
-  public login(u: Usuario) {
+  public async login(u: Usuario) {
+    const loading = await this.al.loading();
     this.afa.auth.signInWithEmailAndPassword(u.email, u.senha).then(
       user => {
         if (user.user.emailVerified) {
-          localStorage.usuario = user.user.uid;
-          this.route.navigate(['administracao']);
+          loading.dismiss();
+          localStorage.removeItem('usuario');
+          localStorage.setItem('usuario', user.user.uid);
+          this.route.navigate(['ser-eri']);
         } else {
+          loading.dismiss();
           this.logout();
         }
       },
       error => {
+        loading.dismiss();
+        this.al.toast({message: error});
         console.log(error);
       }
     );
@@ -57,15 +68,13 @@ export class LoginService {
 
   public logout() {
     this.afa.auth.signOut();
-    localStorage.clear();
+    localStorage.removeItem('usuario');
     this.route.navigate(['login']);
   }
 
-  public isLogado() {
+  public isLogado(): Observable<boolean> {
     return this.afa.authState.pipe(
       map(usuario => {
-        // se usuario diferente de nulo
-        // existe sessão ativa, ou usuario logado
         return usuario !== null;
       })
     );

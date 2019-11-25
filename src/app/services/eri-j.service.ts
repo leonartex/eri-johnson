@@ -13,7 +13,7 @@ export class EriJService {
     const formData = new FormData();
     formData.append('foto', img);
 
-    const url = `https://eri-johnson-api.herokuapp.com/eri/`;
+    const url = `https://eri-johnson-api.herokuapp.com/eri?chave=havanagila`;
     return this.http.post(url, formData);
   }
 }

@@ -1,22 +1,35 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>anotacoes</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/ser-eri">
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title>Escrever</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <form>
     <ion-item>
+      <ion-label position="floating">Ser Eri Johnson é</ion-label>
       <ion-textarea [(ngModel)]="anotacaoAtual.conteudo" name="texto"></ion-textarea>
     </ion-item>
-    <ion-button (click)="gravar()">Enviar</ion-button>
+    <div>
+      <ion-button (click)="gravar()" position="right" float-end>Enviar</ion-button>
+    </div>
   </form>
 
-  <ion-list>
-    <ion-item *ngFor="let item of anotacoes | async">
-      {{item.conteudo}}
-      <button (click)="editar(item)">Editar</button>
-      <button (click)="deletar(item.uid)">Excluir</button>
+  <ion-item-sliding *ngFor="let item of anotacoes | async">
+    <ion-item>
+      "Ser Eri Johnson é {{item.conteudo}}"
     </ion-item>
-  </ion-list>
+    <ion-item-options>
+      <ion-item-option color="primary" (click)="editar(item)">
+        <ion-icon name="create"></ion-icon>
+      </ion-item-option>
+      <ion-item-option color="danger" (click)="deletar(item)">
+        <ion-icon name="trash"></ion-icon>
+      </ion-item-option>
+    </ion-item-options>
+  </ion-item-sliding>
 </ion-content>

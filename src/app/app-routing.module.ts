@@ -1,22 +1,32 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { SessionGuard } from '../app/guards/session.guard';
+import { SessionInversoGuard } from './guards/session-inverso.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)},
-  { path: 'login', loadChildren: './pages/login/login.module#LoginPageModule' },
-  { path: 'teste-foto', loadChildren: './pages/teste-foto/teste-foto.module#TesteFotoPageModule' },
+  { path: 'home', loadChildren: () => import('./home/home.module').then(m => m.HomePageModule) },
+  {
+    path: 'login',
+    loadChildren: './pages/login/login.module#LoginPageModule'
+  },
+  { path: 'exame-fotografico', loadChildren: './pages/teste-foto/teste-foto.module#TesteFotoPageModule' },
   { path: 'questionario', loadChildren: './pages/questionario/questionario.module#QuestionarioPageModule' },
-  { path: 'cadastro', loadChildren: './pages/cadastro/cadastro.module#CadastroPageModule' },
   { path: 'resultado', loadChildren: './pages/resultado/resultado.module#ResultadoPageModule' },
   {
-    path: 'administracao',
-    loadChildren: './pages/administracao/administracao.module#AdministracaoPageModule',
-    canActivate: [SessionGuard]
+    path: 'cadastro',
+    loadChildren: './pages/cadastro/cadastro.module#CadastroPageModule',
+    canActivate: [SessionInversoGuard]
   },
   { path: 'recuperar-senha', loadChildren: './pages/recuperar-senha/recuperar-senha.module#RecuperarSenhaPageModule' },
-  { path: 'anotacoes', loadChildren: './pages/anotacoes/anotacoes.module#AnotacoesPageModule' },
+  {
+    path: 'ser-eri',
+    loadChildren: './pages/eri-johnson/eri-johnson.module#EriJohnsonPageModule'
+  },
+  {
+    path: 'logout',
+    loadChildren: './pages/logout/logout.module#LogoutPageModule'
+  },
 ];
 
 @NgModule({

@@ -1,31 +1,50 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>questionario</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title *ngIf="contador <= 10; else elseTitle">Questão {{contador}}/10</ion-title>
+    <ng-template #elseTitle>
+      <ion-title>Questionário concluído</ion-title>
+    </ng-template>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <img class="pergunta" src="../../../assets/shapes.svg">
-  <div *ngIf="questoes.indexOf(questaoAtual) != -1; then thenBlock; else elseBlock"></div>
-  <ng-template #thenBlock>
-    <div class="ion-padding pergunta">
+  <div class="ion-padding pergunta">
+    <form *ngIf="questoes.indexOf(questaoAtual) != -1; else elseTexto">
       <div>
-        <p>
-          <strong>Questão {{contador}}: </strong> {{questaoAtual.questao}}
+        <p id="questao">
+          <strong>Questão: </strong> {{questaoAtual.questao}}
         </p>
       </div>
-      <ion-list>
-        <ion-radio-group #alternativaEscolhida>
+      <ion-list aria-labelledby="questao">
+        <ion-radio-group name="alternativaEscolhida" [(ngModel)]="alternativaEscolhida">
           <ion-item *ngFor="let alternativa of questaoAtual.alternativas">
             <ion-label>{{alternativa}}</ion-label>
             <ion-radio slot="start" [value]="questaoAtual.alternativas.indexOf(alternativa)"></ion-radio>
           </ion-item>
         </ion-radio-group>
       </ion-list>
-    </div>
-    <ion-button expand="full" size="large" (click)="responder(alternativaEscolhida.value)">Responder</ion-button>
-  </ng-template>
-  <ng-template #elseBlock>
-    <ion-button expand="full" size="large" (click)="resultado()">Visualizar resultado</ion-button>
-  </ng-template>
+    </form>
+    <ng-template #elseTexto>
+      <ion-card>
+        <ion-card-header>
+          <ion-card-subtitle>Parabéns,</ion-card-subtitle>
+          <h2>Você concluiu o questionário</h2>
+        </ion-card-header>
+        <ion-card-content>
+          <p>Vamos ver o seu resultado. Clique no botão no fundo da tela.</p>
+        </ion-card-content>
+      </ion-card>
+    </ng-template>
+  </div>
 </ion-content>
+<ion-footer *ngIf="questoes.indexOf(questaoAtual) != -1; else elseButton">
+  <ion-button expand="full" size="large" (click)="responder(alternativaEscolhida)">Responder</ion-button>
+</ion-footer>
+<ng-template #elseButton>
+  <ion-footer>
+    <ion-button expand="full" (click)="resultado()">Visualizar resultado</ion-button>
+  </ion-footer>
+</ng-template>

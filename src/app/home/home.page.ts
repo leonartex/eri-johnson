@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  resultado = localStorage.getItem('resultadoFinal');
 
   constructor( private router: Router) {}
 
@@ -15,7 +16,7 @@ export class HomePage {
   }
 
   testeFoto() {
-    this.router.navigate(['/teste-foto']);
+    this.router.navigate(['/exame-fotografico']);
   }
 
 }

@@ -1,5 +1,5 @@
 export class Anotacao {
-    conteudo = 'Ser Eri Johnson é ';
+    conteudo: string;
     usuario?: string;
     uid?: string;
 }

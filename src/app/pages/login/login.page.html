@@ -1,13 +1,14 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>login</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Entrar</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <div class="ion-padding">
-    <h2>Entrar</h2>
-
     <form>
       <ion-item>
         <ion-label position="floating">Email</ion-label>
@@ -15,12 +16,15 @@
       </ion-item>
       <ion-item>
         <ion-label position="floating">Senha</ion-label>
-        <ion-input type="password" [(ngModel)]="usuario.senha" [(ngModel)]="usuario.confirmaSenha" name="senha"></ion-input>
+        <ion-input type="password" [(ngModel)]="usuario.senha" [(ngModel)]="usuario.confirmaSenha" name="senha">
+        </ion-input>
       </ion-item>
+      <br />
       <div class="align-center">
-        <ion-button (click)="login()"  [disabled]="!usuario.valid">Entrar</ion-button>
+        <ion-button (click)="login()" expand="block" [disabled]="!usuario.valid">Entrar</ion-button>
       </div>
     </form>
-    <a href="/cadastro">Não possui conta? Cadastre-se</a>
+    <br />
+    <p>Não possui conta? <a href="/cadastro"><strong>Cadastre-se</strong></a></p>
   </div>
 </ion-content>

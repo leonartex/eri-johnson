@@ -3,50 +3,100 @@
         "questao": "O seu primeiro nome é...",
         "alternativas": [
             "Herson",
-            "Erivaldo",
+            "Eriovaldo",
             "Ednaldo",
             "Eri"
         ],
         "correta": 1
     },
     {
-        "questao": "O seu segundo nome é...",
+        "questao": "Em um dia de sol, você vai...",
         "alternativas": [
-            "Herson",
-            "Erivaldo",
-            "Ednaldo",
-            "Eri"
+            "Para a praia",
+            "Para a Globo",
+            "Para a Record",
+            "Ficar em casa"
+        ],
+        "correta": 0
+    },
+    {
+        "questao": "É um dia frio e chuvoso, Eri Johnson, parado em sua cama, reflete. 'Será que...', pensa Eri Johnson. O que Eri Johnson pensou?",
+        "alternativas": [
+            "Será que vou pra praia?",
+            "Será que existe algum motivo existencial para essa vida?",
+            "Será só imaginação?",
+            "Será que nada vai acontecer?"
+        ],
+        "correta": 0
+    },
+    {
+        "questao": "Você está na praia, é um dia frio e chuvoso. O que você faz?",
+        "alternativas": [
+            "Volta para a sua casa, você precisa ensaiar para a sua mais nova peça, a Quem é Quem, com Viviane Araújo",
+            "Eri Johnson",
+            "Você corre pela praia até a exaustão de todo o seu corpo, esperando, de maneira vaga, que alguma coisa lhe aconteça para que possa esquecer dessa vida. E então, quando você já não sentia mais as suas pernas, aparece uma criatura pitoresca, ela vem em sua direção, você não tem como escapar. Ela chega perto de ti e, próximo da sua orelha, lhe oferece duas coisas, um par de chinelos Havaiana e um óculos de sol falsificado. Você não consegue se desvencilhar e acaba comprando as duas",
+            "Joga vôlei de praia"
+        ],
+        "correta": 3
+    },
+    {
+        "questao": "Você está indo se casar, quem você chama para fazer a cerimônia?",
+        "alternativas": [
+            "Padre Zezinho",
+            "Padre Marcelo Rossi",
+            "Padre Fábio de Melo",
+            "Padre Alessandro Campos"
+        ],
+        "correta": 2
+    },
+    {
+        "questao": "Você se casou. Quanto tempo o seu casamento duraria?",
+        "alternativas": [
+            "1 ano e 3",
+            "1 ano e 7 meses",
+            "2 anos e 3 meses",
+            "2 anos e 7 meses"
         ],
         "correta": 1
     },
     {
-        "questao": "O seu terceiro nome é...",
+        "questao": "Você está fazendo um papel de caubói em uma novela, seu nome é?",
         "alternativas": [
-            "Herson",
-            "Erivaldo",
-            "Ednaldo",
-            "Eri"
+            "Reginaldo",
+            "Giácomo Madureira",
+            "Waldomiro",
+            "Ligeirinho"
         ],
-        "correta": 1
+        "correta": 2
     },
     {
-        "questao": "O seu quarto nome é...",
+        "questao": "Você já foi obrigado a contracenar com Murilo Benício?",
         "alternativas": [
-            "Herson",
-            "Erivaldo",
-            "Ednaldo",
-            "Eri"
+            "Sim",
+            "Não",
+            "Talvez",
+            "Não me recordo desses momentos e ficaria feliz se você me deixasse em paz. Para mim nunca aconteceram essas cenas e minha psicóloga falou para evitar lembrar de traumas"
         ],
-        "correta": 1
+        "correta": 0
     },
     {
-        "questao": "O seu quinto nome é...",
+        "questao": "O nome Alice Souto lhe traz?",
         "alternativas": [
-            "Herson",
-            "Erivaldo",
-            "Ednaldo",
-            "Eri"
+            "Tristeza",
+            "Saudades",
+            "Vôlei de Praia",
+            "Felicidade"
         ],
-        "correta": 1
+        "correta": 2
+    },
+    {
+        "questao": "Eri Johnson?",
+        "alternativas": [
+            "Eri Johnson",
+            "Sim",
+            "Não",
+            "Carlos"
+        ],
+        "correta": 0
     }
 ]

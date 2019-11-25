@@ -1,7 +1,10 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
     <ion-title>
-      Ionic Blank
+      Você é Eri Johnson?
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -10,9 +13,9 @@
   <div class="ion-padding">
     <img src="../../assets/logo.png" class="logo" alt="Eu Sou Eri Johnson?">
     <div class="align-center">
-      <ion-button (click)="testeFoto()">Você é Eri Johnson?</ion-button>
+      <ion-button (click)="testeFoto()" size="large" expand="block">Você é Eri Johnson?</ion-button>
     </div>
-    <p class="align-center">Resultado anterior</p>
+    <p class="align-center" *ngIf="resultado">Seu último teste deu {{resultado | percent}} de semelhança com Eri Johnson.</p>
     <div class="align-center">
       <ion-button (click)="entrar()">Entrar</ion-button>
     </div>

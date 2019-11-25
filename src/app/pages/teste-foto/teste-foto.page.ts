@@ -4,6 +4,8 @@ defineCustomElements(window);
 import { Plugins, CameraResultType } from '@capacitor/core';
 import { EriJService } from 'src/app/services/eri-j.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Router } from '@angular/router';
+import { AlertaService } from 'src/app/services/alerta.service';
 
 const { Camera } = Plugins;
 
@@ -14,17 +16,22 @@ const { Camera } = Plugins;
 })
 export class TesteFotoPage implements OnInit {
   imagem: any;
-  /*private options: CameraOptions = {
-    quality: 100,
-    destinationType: this.camera.DestinationType.DATA_URL,
-    encodingType: this.camera.EncodingType.JPEG,
-    mediaType: this.camera.MediaType.PICTURE
-  }*/
+  isResultadoPronto = false;
+  resultado;
 
-  constructor(private eri: EriJService, private sanitizer: DomSanitizer) { }
+  constructor(
+    private eri: EriJService,
+    private sanitizer: DomSanitizer,
+    private router: Router,
+    private al: AlertaService
+  ) { }
 
   ngOnInit() {
     this.baterFoto();
+  }
+
+  public responder() {
+    this.router.navigate(['/questionario']);
   }
 
   async baterFoto() {
@@ -44,11 +51,20 @@ export class TesteFotoPage implements OnInit {
     const file = new File([blob], 'eri.jpg', { type: 'image/jpeg' });
     this.imagem = this.sanitizer.bypassSecurityTrustResourceUrl(URL.createObjectURL(blob));
 
+    const loading = await this.al.loading();
     this.eri.verificaEri(file).subscribe(
       resp => {
-        console.log(resp);
+        loading.dismiss();
+        console.log(resp.images[0].classifiers[0].classes);
+        this.resultado = resp.images[0].classifiers[0].classes;
+        localStorage.removeItem('resultadoEri');
+        localStorage.setItem('resultadoEri', String(this.resultado[0].score));
+        localStorage.removeItem('resultadoFausto');
+        localStorage.setItem('resultadoFausto', String(this.resultado[1].score));
+        this.isResultadoPronto = true;
       },
       error => {
+        loading.dismiss();
         console.log(error);
       }
     );

@@ -1,0 +1,10 @@
+<ion-list>
+  <ion-item>Você é Eri Johnson?</ion-item>
+  <ion-item>Como é ser Eri Johnson?</ion-item>
+  <div *ngIf="logado; else elseBlock">
+    <ion-item>Sair?</ion-item>
+  </div>
+  <ng-template #elseBlock>
+    <ion-item>Entrar?</ion-item>
+  </ng-template>
+</ion-list>

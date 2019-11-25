@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Como é ser Eri Johnson?</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngFor="let nota of anotacoes | async">
+    <ion-card-content>
+      <p><span>Ser </span> <span>Eri </span> <span>Johnson </span> é <strong> {{nota.conteudo}}</strong></p>
+    </ion-card-content>
+  </ion-card>
+  <ion-fab *ngIf="isLogado" vertical="bottom" horizontal="end" slot="fixed" (click)="anotar()">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
