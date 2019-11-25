@@ -9,5 +9,6 @@ export const environment = {
     messagingSenderId: '974783494833',
     appId: '1:974783494833:web:7f6d0804d1d980d8618090',
     measurementId: 'G-KK2HP277EP'
-  }
+  },
+  urlBase: 'eusouerijohnson-realoficial.firebaseapp.com'
 };
