@@ -3,9 +3,9 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title *ngIf="contador <= 10; else elseTitle">Questão {{contador}}/10</ion-title>
+    <ion-title *ngIf="contador <= 10; else elseTitle">Questão {{contador}}/10?</ion-title>
     <ng-template #elseTitle>
-      <ion-title>Questionário concluído</ion-title>
+      <ion-title>Questionário Concluído?</ion-title>
     </ng-template>
   </ion-toolbar>
 </ion-header>

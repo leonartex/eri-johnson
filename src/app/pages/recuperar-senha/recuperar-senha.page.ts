@@ -8,6 +8,7 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class RecuperarSenhaPage implements OnInit {
   email = '';
+  sucesso = false;
   constructor(private login: LoginService) { }
 
   ngOnInit() {
@@ -18,6 +19,8 @@ export class RecuperarSenhaPage implements OnInit {
   }
 
   recuperar() {
-    this.login.recuperarSenha(this.email);
+    this.login.recuperarSenha(this.email).then(
+      res => this.sucesso = res
+    );
   }
 }

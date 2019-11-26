@@ -4,7 +4,7 @@
       <ion-back-button defaultHref="/login">
       </ion-back-button>
     </ion-buttons>
-    <ion-title>Cadastrar</ion-title>
+    <ion-title>Cadastrar?</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -24,7 +24,8 @@
     </ion-item>
     <br />
     <div class="align-center">
-      <ion-button (click)="cadastrar()" expand="block" [disabled]="!usuario.valid">Cadastrar</ion-button>
+      <ion-button (click)="cadastrar()" expand="block" [disabled]="!usuario.valid || sucesso">Cadastrar</ion-button>
     </div>
+    <ion-item *ngIf="sucesso" color="success" class="align-center">Cadastrado com sucesso, verifique seu email!</ion-item>
   </form>
 </ion-content>

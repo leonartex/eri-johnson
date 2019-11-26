@@ -4,7 +4,7 @@
       <ion-back-button defaultHref="/login">
       </ion-back-button>
     </ion-buttons>
-    <ion-title>Recuperar Senha</ion-title>
+    <ion-title>Recuperar Senha?</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -15,7 +15,8 @@
       <ion-input type="email" [(ngModel)]="email" name="email"></ion-input>
     </ion-item>
     <div class="align-center">
-      <ion-button (click)="recuperar()" [disabled]="emailVazio()">Cadastrar</ion-button>
+      <ion-button (click)="recuperar()" [disabled]="emailVazio() || sucesso">Cadastrar</ion-button>
     </div>
+    <ion-item *ngIf="sucesso" color="success" class="align-center">Um email de recuperação de senha foi encaminhado para você!</ion-item>
   </form>
 </ion-content>

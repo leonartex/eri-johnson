@@ -19,11 +19,11 @@ export class LoginService {
     return this.afa.auth.currentUser;
   }
 
-  public async cadastrar(u: Usuario) {
+  public async cadastrar(u: Usuario): Promise<boolean> {
     const loading = await this.al.loading();
-    this.afa.auth.createUserWithEmailAndPassword(u.email, u.senha).then(
+    return this.afa.auth.createUserWithEmailAndPassword(u.email, u.senha).then(
       credenciais => {
-        this.fs.doc('/users/' + credenciais.user.uid).set({
+        return this.fs.doc('/users/' + credenciais.user.uid).set({
           tipo: 'comum'
         })
           .then(() => {
@@ -31,15 +31,17 @@ export class LoginService {
               url: environment.urlBase
             });
             loading.dismiss();
+            return true;
           });
       },
       error => {
         loading.dismiss();
-        this.al.toast({message: error});
         if (error.code === 'auth/invalid-email') {
-          console.log('Email inválido');
+          this.al.toast({ message: 'Email inválido, por favor utilize outro!' });
+        } else {
+          this.al.toast({ message: error });
         }
-        console.log(error);
+        return false;
       }
     );
   }
@@ -60,7 +62,7 @@ export class LoginService {
       },
       error => {
         loading.dismiss();
-        this.al.toast({message: error});
+        this.al.toast({ message: error });
         console.log(error);
       }
     );
@@ -80,7 +82,18 @@ export class LoginService {
     );
   }
 
-  public recuperarSenha(email: string) {
-    this.afa.auth.sendPasswordResetEmail(email, {url: environment.urlBase + '/login'});
+  public async recuperarSenha(email: string): Promise<boolean> {
+    const loading = await this.al.loading();
+    return this.afa.auth.sendPasswordResetEmail(email, { url: environment.urlBase + '/login' }).then(
+      res => {
+        loading.dismiss();
+        return true;
+      },
+      err => {
+        loading.dismiss();
+        this.al.toast({ message: err });
+        return false;
+      }
+    );
   }
 }

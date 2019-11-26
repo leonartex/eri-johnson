@@ -8,8 +8,8 @@ import { Usuario } from 'src/app/models/Usuario';
   styleUrls: ['./cadastro.page.scss'],
 })
 export class CadastroPage implements OnInit {
-
   usuario = new Usuario();
+  sucesso = false;
 
   constructor(private login: LoginService) { }
 
@@ -17,7 +17,9 @@ export class CadastroPage implements OnInit {
   }
 
   cadastrar() {
-    this.login.cadastrar(this.usuario);
+    this.login.cadastrar(this.usuario).then(
+      res => this.sucesso = res
+    );
   }
 
 }

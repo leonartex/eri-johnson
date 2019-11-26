@@ -1,3 +1,15 @@
+ion-spinner{
+    width: 50vw !important;
+    height: 50vw !important;
+    position: fixed;
+    left: 25vw;
+    top: 10vh;
+}
+ion-spinner > svg{
+    width: 100% !important;
+    height: 100% !important;
+}
+
 ion-card:nth-of-type(1n){
     background: rgb(0, 0, 0);
     color: #fff;
