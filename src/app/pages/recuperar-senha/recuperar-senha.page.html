@@ -15,7 +15,7 @@
       <ion-input type="email" [(ngModel)]="email" name="email"></ion-input>
     </ion-item>
     <div class="align-center">
-      <ion-button (click)="recuperar()" [disabled]="emailVazio() || sucesso">Cadastrar</ion-button>
+      <ion-button (click)="recuperar()" [disabled]="emailVazio() || sucesso">Recuperar</ion-button>
     </div>
     <ion-item *ngIf="sucesso" color="success" class="align-center">Um email de recuperação de senha foi encaminhado para você!</ion-item>
   </form>
